@@ -8,7 +8,8 @@ class App extends React.Component{
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header />
+          {/* pass in props; like data */}
+          <Header tagline="Fresh Seafood Market"/>
         </div>
 
         <Order />
