@@ -3,6 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
+import Fish from './Fish';
 
 class App extends React.Component{
   constructor(){
@@ -44,6 +45,15 @@ class App extends React.Component{
         <div className="menu">
           {/* pass in props; like data */}
           <Header tagline="Fresh Seafood Market"/>
+          <ul className="list-of-fishes">
+            {/* object.keys return an array */}
+            {Object
+              .keys(this.state.fishes)
+              // for each element, render through Fish component
+              // key needs to be unique
+              .map(key => <Fish key={key} details={this.state.fishes[key]} />)
+            }
+          </ul>
         </div>
 
         <Order />
