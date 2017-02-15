@@ -4,6 +4,7 @@ import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
+import base from '../base';
 
 class App extends React.Component{
   constructor(){
@@ -20,6 +21,20 @@ class App extends React.Component{
       fishes: {},
       order: {}
     };
+  }
+
+  // before component gets rendered, sync firebase with it
+  // client and server sync together
+  componentWillMount(){
+    this.ref = base.syncState(`${this.props.params.storeId}/fishes`, {
+      context: this,
+      state: 'fishes'
+    });
+  }
+
+  // remove listening to changes in states when we change the page
+  componentWillUnmount(){
+    base.removeBinding(this.ref);
   }
 
   addFish(fish){
