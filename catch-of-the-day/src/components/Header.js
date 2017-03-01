@@ -23,5 +23,10 @@ import React from 'react';
   // }
 // }
 
+// prop validation
+Header.propTypes = {
+  tagline: React.PropTypes.string.isRequired
+}
+
 
 export default Header;
